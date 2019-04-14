@@ -19,10 +19,10 @@ import kotlinx.android.synthetic.main.activity_contact_us.*
 import java.net.URLEncoder
 import java.util.*
 
-class ContactUsActivity : AppCompatActivity(), PostAsync.PostAsyncInterface {
+class ContactUsActivity : AppCompatActivity(), HttpGetAsync.PostAsyncInterface {
 
     private val WHEN_NXT_TO_SND_MSG = "contact.us.key"
-    private val sheetName = "<insert-sheet-name>"
+    private val sheetName = "Contact us Demo"
     private lateinit var tinyDB: TinyDB
 
     val TAG = "ContactUs"
@@ -31,7 +31,9 @@ class ContactUsActivity : AppCompatActivity(), PostAsync.PostAsyncInterface {
         tinyDB.putLong(WHEN_NXT_TO_SND_MSG, Date().time + 86400000)
         progress_circular.visibility = View.GONE
         if (responseCode != 200){
-           // error occured, handle it
+            val bool = launchWebSite("fb-messenger://user/220997458532709")
+            if (!bool)
+                launchWebSite("https://m.me/A1StatusSaver")
         }
         else{
             send_btn.isEnabled = true
@@ -188,6 +190,6 @@ class ContactUsActivity : AppCompatActivity(), PostAsync.PostAsyncInterface {
 
         send_btn.isEnabled = false
         progress_circular.visibility = View.VISIBLE
-        PostAsync(urlStr, this).execute()
+        HttpGetAsync(urlStr, this).execute()
     }
 }
