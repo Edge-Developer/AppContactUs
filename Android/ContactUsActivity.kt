@@ -30,11 +30,8 @@ class ContactUsActivity : AppCompatActivity(), HttpGetAsync.PostAsyncInterface {
     override fun onPostExecute(responseCode: Int) {
         tinyDB.putLong(WHEN_NXT_TO_SND_MSG, Date().time + 86400000)
         progress_circular.visibility = View.GONE
-        if (responseCode != 200){
-            val bool = launchWebSite("fb-messenger://user/220997458532709")
-            if (!bool)
-                launchWebSite("https://m.me/A1StatusSaver")
-        }
+        if (responseCode != 200)
+          // handle it 
         else{
             send_btn.isEnabled = true
             nameInputLayout.visibility = View.GONE
