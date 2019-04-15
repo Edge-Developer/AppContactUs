@@ -178,7 +178,7 @@ class ContactUsActivity : AppCompatActivity(), HttpGetAsync.PostAsyncInterface {
             .authority("script.google.com")
             .appendPath("macros")
             .appendPath("s")
-            .appendPath("AKfycbz-vEBhVACujXI5Srf8OAnfryMuOZv4U2l9KIS44fZt0vcMSZY")
+            .appendPath("") //put the web app key here
             .appendPath("exec")
             .appendQueryParameter("name", name)
             .appendQueryParameter("email", email)
